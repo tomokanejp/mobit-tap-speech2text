@@ -257,22 +257,22 @@ $(function() {
 					formData.append(i, M_FT.imagesToSend[i]);
 				}
 				
-				xhr.open('POST', form.action, true);
-				xhr.send(formData);
-				console.log('response:'+xhr.responseText);
+				//xhr.open('POST', form.action, true);
+				//xhr.send(formData);
+				//console.log('response:'+xhr.responseText);
 				
-				//$.ajax({
-				//	url: '/imgpost',
-				//	method: 'post',
-				//	dataType: 'json',
-				//	data: JSON.stringify(formData),
-				//	processData: false,
-				//	contentType: false
-				//}).done(function(res){
-				//	console.log('success', res);
-				//}).fail(function(jqXHR, textStatus, errorThrown) {
-				//	console.log('failed?');
-				//});
+				$.ajax({
+					url: '/imgpost',
+					method: 'post',
+					dataType: 'json',
+					data: JSON.stringify(formData),
+					processData: false,
+					contentType: false
+				}).done(function(res){
+					console.log('success', res);
+				}).fail(function(jqXHR, textStatus, errorThrown) {
+					console.log('failed?'+jqXHR+' / '+textStatus+' / '+errorThrown);
+				});
 				return false;
 			}
 	};
