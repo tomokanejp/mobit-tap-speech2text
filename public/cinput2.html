@@ -250,21 +250,21 @@ $(function() {
 				}
 				form = $('#camForm').get(0),
 				formData = new FormData(form),
-				xhr = new XMLHttpRequest();
+				//xhr = new XMLHttpRequest();
 				
 				eo.preventDefault();
 				for(var i in M_FT.imagesToSend) {
 					formData.append(i, M_FT.imagesToSend[i]);
 				}
 				
-				//xhr.open('POST', form.action, true);
+				//xhr.open('POST', form.action, false);
 				//xhr.send(formData);
 				//console.log('response:'+xhr.responseText);
 				
 				$.ajax({
 					url: '/imgpost',
 					method: 'post',
-					dataType: 'json',
+					dataType: 'html',
 					data: JSON.stringify(formData),
 					processData: false,
 					contentType: false
