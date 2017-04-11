@@ -3,8 +3,8 @@ applications:
   memory: 512M
   instances: 1
   domain: mybluemix.net
-  name: mob-eval5
-  host: mob-eval5
+  name: mobit-tap-speech2text
+  host: mobit-tap-speech2text
   disk_quota: 1024M
   services:
   - mob-eval5-cloudantNoSQLDB
