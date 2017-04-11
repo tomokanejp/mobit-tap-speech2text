@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="css/speechfile.css" media="all">
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="js/test.js"></script>
+
+</head>
+<body>
+<div id="title">Speech to Textサンプル</div>
+<div id="ddhandler">
+ここにドロップしてください。
+</div>
+
+<div id="files" style="display:show">
+	<div class="file">
+		<div class="filebox" id="filename">
+		</div>
+		<div class="filebox" id="submitbutton">
+			<form id="speechfile" method="post" enctype="multipart/form-data" action="https://mobit-tap-speech2text.mybluemix.net/speechfile">
+				<input type="file" name="audio_file" />
+				<button class="btn" type="submit">送信
+				</button>
+			</form>
+		</div>
+	</div>
+</div>
+<div id="translateArea">
+<div id="translateTitle">
+翻訳結果
+</div>
+<div class="file" id="translate">
+私はこんにちは
+</div>
+</div>
+</body>
+</html>
