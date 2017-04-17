@@ -2,15 +2,15 @@ var file;
 $(function(){
 $("#speechfile").on("submit",function(evt){
 	var form = $("#speechfile").get()[0];
-	//var formData = new FormData(form);
+	var formData = new FormData(form);
 	
-	formData = new FormData();
-	var input_file = $("#audio_file");
-	console.log(input_file[0].files[0]);
-	console.log(file[0]);
+//	formData = new FormData();
+//	var input_file = $("#audio_file");
+//console.log(input_file[0].files[0]);
+//	console.log(file[0]);
 	
-	formData.append( input_file.attr('name'), file[0] );
-	console.log(formData);
+//	formData.append( input_file.attr('name'), input_file[0] );
+//	console.log(formData);
 	
 	
 	sendFileToServer(formData);
@@ -21,7 +21,7 @@ $("#speechfile").on("submit",function(evt){
 function sendFileToServer(formData)
 {
     var uploadURL ="https://mobit-tap-speech2text.mybluemix.net/speechfile"; //Upload URL
-    console.log("BBB");
+    
     $.ajax({
         url: uploadURL,
         type: "POST",
@@ -32,7 +32,9 @@ function sendFileToServer(formData)
         data: formData
     }).done(function(response){
         console.log("success");
-        console.log(response);
+        console.log(response.text);
+        $("#translate").val(response.text);
+        $("#translate").show();
     }).fail(function(jqXHR, textStatus, errorThrown ){
         console.log(jqXHR );
         console.log(textStatus );
