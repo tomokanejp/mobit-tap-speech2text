@@ -9,29 +9,18 @@
 </head>
 <body>
 <div id="title">Speech to Textサンプル</div>
-<div id="ddhandler">
-ここにドロップしてください。
-</div>
 
-<div id="files" style="display:show">
-	<div class="file">
-		<div class="filebox" id="filename">
-		</div>
-		<div class="filebox" id="submitbutton">
-			<form id="speechfile" method="POST" enctype="multipart/form-data" >
-				<input type="file" name="audio_file" id="audio_file"/>
-				<button class="btn" id="btnFileSub">送信
-				</button>
-			</form>
-		</div>
-	</div>
-</div>
+<form id="speechfile" method="POST" enctype="multipart/form-data" >
+	<input type="file" name="audio_file" id="audio_file" style="display:show"/>
+	<button class="btn" type="submit" id="btnFileSub">送信
+	</button>
+</form>
+
 <div id="translateArea">
 <div id="translateTitle">
 翻訳結果
 </div>
-<div class="file" id="translate">
-私はこんにちは
+<div class="file" id="translate" sytle="display:hide">
 </div>
 </div>
 </body>
