@@ -33,7 +33,7 @@ function sendFileToServer(formData)
     }).done(function(response){
         console.log("success");
         console.log(response.text);
-        $("#translate").val(response.text);
+        $("#translate").text(response.text);
         $("#translate").show();
     }).fail(function(jqXHR, textStatus, errorThrown ){
         console.log(jqXHR );
