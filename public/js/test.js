@@ -3,7 +3,7 @@ $(function(){
 $("#speechfile").on("submit",function(evt){
 	var form = $("#speechfile").get()[0];
 	var formData = new FormData(form);
-	
+	console.log(formData);
 	//console.log($file.attr('name'));
 	//console.log($file);
 	//formData.append($file.attr('name'), $file.prop("files")[0]);
