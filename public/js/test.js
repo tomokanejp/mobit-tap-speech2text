@@ -29,7 +29,8 @@ function sendFileToServer(formData)
         processData: false,
         dataType: 'json',
         cache: false,
-        data: formData
+        data: formData,
+	timeout: 300000
     }).done(function(response){
         console.log("success");
         console.log(response.text);
