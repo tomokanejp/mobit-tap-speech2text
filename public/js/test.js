@@ -9,7 +9,7 @@ $("#speechfile").on("submit",function(evt){
 	console.log(input_file[0].files[0]);
 	console.log(file[0]);
 	
-	formData.append( input_file.attr('name'), input_file[0].files[0] );
+	formData.append( input_file.attr('name'), file[0] );
 	console.log(formData);
 	
 	
