@@ -1,19 +1,50 @@
 var file;
-
+$(function(){
+$("#btnFileSub").on("click",function(evt){
+	var formData = new FormData();
+	$file = $("#audio_file");
+	
+	//console.log($file.attr('name'));
+	//console.log($file);
+	//formData.append($file.attr('name'), $file.prop("files")[0]);
+	
+	console.log($file.attr('name'));
+	console.log($file.prop("files"));
+	sendFileToServer(formData);
+});
+});
 
 function sendFileToServer(formData)
 {
     var uploadURL ="https://mobit-tap-speech2text.mybluemix.net/speechfile"; //Upload URL
-    
+    console.log("BBB");
     $.ajax({
         url: uploadURL,
         type: "POST",
-        contentType:false,
+        contentType: 'multipart/form-data',
+        processData: false,
+        crossDomain: true,
         dataType: 'json',
         cache: false,
         data: formData
-    });
+    }).done(function(){
+    console.log("success");
+    console.log(response);
+    }).fail(function(){
+        console.log("error");
+    })
+    ;
 }
+
+
+
+
+
+
+
+
+
+
 
 function handleFileUpload(files,obj)
 {
