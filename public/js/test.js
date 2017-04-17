@@ -1,16 +1,15 @@
 var file;
 $(function(){
-$("#btnFileSub").on("click",function(evt){
-	var formData = new FormData();
-	$file = $("#audio_file");
+$("#speechfile").on("submit",function(evt){
+	var form = $("#speechfile").get()[0];
+	var formData = new FormData(form);
 	
 	//console.log($file.attr('name'));
 	//console.log($file);
 	//formData.append($file.attr('name'), $file.prop("files")[0]);
 	
-	console.log($file.attr('name'));
-	console.log($file.prop("files"));
 	sendFileToServer(formData);
+	evt.preventDefault();
 });
 });
 
@@ -21,17 +20,18 @@ function sendFileToServer(formData)
     $.ajax({
         url: uploadURL,
         type: "POST",
-        contentType: 'multipart/form-data',
+        contentType: false,
         processData: false,
-        crossDomain: true,
         dataType: 'json',
         cache: false,
         data: formData
-    }).done(function(){
-    console.log("success");
-    console.log(response);
-    }).fail(function(){
-        console.log("error");
+    }).done(function(response){
+        console.log("success");
+        console.log(response);
+    }).fail(function(jqXHR, textStatus, errorThrown ){
+        console.log(jqXHR );
+        console.log(textStatus );
+        console.log(errorThrown );
     })
     ;
 }
