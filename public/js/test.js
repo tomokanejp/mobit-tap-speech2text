@@ -2,11 +2,16 @@ var file;
 $(function(){
 $("#speechfile").on("submit",function(evt){
 	var form = $("#speechfile").get()[0];
-	var formData = new FormData(form);
+	//var formData = new FormData(form);
+	
+	formData = new FormData();
+	var input_file = $("#audio_file");
+	console.log(input_file[0].files[0]);
+	console.log(file[0]);
+	
+	formData.append( input_file.attr('name'), input_file[0].files[0] );
 	console.log(formData);
-	//console.log($file.attr('name'));
-	//console.log($file);
-	//formData.append($file.attr('name'), $file.prop("files")[0]);
+	
 	
 	sendFileToServer(formData);
 	evt.preventDefault();
@@ -72,19 +77,9 @@ obj.on('dragover', function (e)
 obj.on('drop', function (e)
 {
   
-     $(this).css('border', '2px dotted #0B85A1');
      e.preventDefault();
      file = e.originalEvent.dataTransfer.files;
      
-     console.log(file[0]);
-     
-     $("#filename").text(file[0].name);
-     
-     $("#files").show();
-     
-     
-     //We need to send dropped files to Server
-     //handleFileUpload(files,obj);
 });
 $(document).on('dragenter', function (e)
 {
