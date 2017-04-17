@@ -18,9 +18,9 @@
 		<div class="filebox" id="filename">
 		</div>
 		<div class="filebox" id="submitbutton">
-			<form id="speechfile" method="post" enctype="multipart/form-data" action="https://mobit-tap-speech2text.mybluemix.net/speechfile">
-				<input type="file" name="audio_file" />
-				<button class="btn" type="submit">送信
+			<form id="speechfile" method="POST" enctype="multipart/form-data" >
+				<input type="file" name="audio_file" id="audio_file"/>
+				<button class="btn" id="btnFileSub">送信
 				</button>
 			</form>
 		</div>
