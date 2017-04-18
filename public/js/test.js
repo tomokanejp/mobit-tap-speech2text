@@ -39,7 +39,7 @@ function sendFileToServer(formData)
     
     $("body").append('<div id="modal-bg"></div>');
     $("#modal-bg,#progress-bar").fadeIn("slow");
-    modalResize();
+    $(window).resize(modalResize);
     
     $("#progress-bar").progressbar({
         value:0,
