@@ -15,27 +15,76 @@ $("#speechfile").on("submit",function(evt){
 	
 	sendFileToServer(formData);
 	evt.preventDefault();
+	
 });
 });
+
+function modalResize(){
+     var w = $("#screen").width();
+     var h = $("#screen").height();
+
+     var cw = $("#modal-main").outerWidth();
+     var ch = $("#modal-main").outerHeight();
+
+     $("#modal-main").css({
+          "left": ((w - cw)/2) + "px",
+          "top": ((h - ch)/2) + "px"
+     });
+}
 
 function sendFileToServer(formData)
 {
     var uploadURL ="https://mobit-tap-speech2text.mybluemix.net/speechfile"; //Upload URL
+    var start = Date.now();
+    
+    $("body").append('<div id="modal-bg"></div>');
+    $("#modal-bg,#progress-bar").fadeIn("slow");
+    modalResize();
+    
+    $("#progress-bar").progressbar({
+        value:0,
+        max:100
+    });
     
     $.ajax({
+        async: true,
+        xhr : function(){
+            XHR = $.ajaxSettings.xhr();
+            if(XHR.upload){
+                XHR.upload.addEventListener('progress',function(e){
+                    var progre = parseInt(e.loaded/e.total*10000)/100 ;
+                    $("#progress-bar").progressbar({
+                        value:progre
+                    });
+                    console.log(progre+"%") ;
+                    
+                 }, false);
+             }
+            return XHR;
+        },
         url: uploadURL,
         type: "POST",
         contentType: false,
         processData: false,
         dataType: 'json',
         cache: false,
-        data: formData,
-	timeout: 300000
+        data: formData
     }).done(function(response){
         console.log("success");
         console.log(response.text);
+        
         $("#translate").text(response.text);
         $("#translate").show();
+        
+        var end = Date.now();
+        var time = Math.round((end - start)/100)/10;
+        
+        $("#progress-bar,#modal-bg").fadeOut("slow",function(){
+                $('#modal-bg').remove() ;
+            });
+        
+        $("#timeLeft").text(time + "秒");
+        
     }).fail(function(jqXHR, textStatus, errorThrown ){
         console.log(jqXHR );
         console.log(textStatus );
@@ -45,60 +94,3 @@ function sendFileToServer(formData)
 }
 
 
-
-
-
-
-
-
-
-
-
-function handleFileUpload(files,obj)
-{
-   for (var i = 0; i < files.length; i++)
-   {
-        var fd = new FormData();
-        fd.append('file', files[i]);
-        sendFileToServer(fd);
-   }
-}
-$(document).ready(function()
-{
-var obj = $("#ddhandler");
-obj.on('dragenter', function (e)
-{
-    e.stopPropagation();
-    e.preventDefault();
-    $(this).css('border', '2px solid #0B85A1');
-});
-obj.on('dragover', function (e)
-{
-     e.stopPropagation();
-     e.preventDefault();
-});
-obj.on('drop', function (e)
-{
-  
-     e.preventDefault();
-     file = e.originalEvent.dataTransfer.files;
-     
-});
-$(document).on('dragenter', function (e)
-{
-    e.stopPropagation();
-    e.preventDefault();
-});
-$(document).on('dragover', function (e)
-{
-  e.stopPropagation();
-  e.preventDefault();
-  obj.css('border', '2px dotted #0B85A1');
-});
-$(document).on('drop', function (e)
-{
-    e.stopPropagation();
-    e.preventDefault();
-});
-  
-});
