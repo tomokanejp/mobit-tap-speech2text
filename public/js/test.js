@@ -26,7 +26,7 @@ function modalResize(){
      var cw = $("#progress-bar").outerWidth();
      var ch = $("#progress-bar").outerHeight();
 
-     $("#progress-bar).css({
+     $("#progress-bar").css({
           "left": ((w - cw)/2) + "px",
           "top": ((h - ch)/2) + "px"
      });
