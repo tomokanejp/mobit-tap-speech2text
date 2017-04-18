@@ -23,10 +23,10 @@ function modalResize(){
      var w = $("#screen").width();
      var h = $("#screen").height();
 
-     var cw = $("#modal-main").outerWidth();
-     var ch = $("#modal-main").outerHeight();
+     var cw = $("#progress-bar").outerWidth();
+     var ch = $("#progress-bar").outerHeight();
 
-     $("#modal-main").css({
+     $("#progress-bar).css({
           "left": ((w - cw)/2) + "px",
           "top": ((h - ch)/2) + "px"
      });
@@ -92,5 +92,4 @@ function sendFileToServer(formData)
     })
     ;
 }
-
 
